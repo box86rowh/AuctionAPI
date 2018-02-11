@@ -54,16 +54,18 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
             }
         }
 
-
     }
 
     public class RouteMapper : IServiceRouteMapper
     {
         public void RegisterRoutes(IMapRoute mapRouteManager)
         {
-            mapRouteManager.MapHttpRoute("AAModules/AuctionAPI", "default", "{controller}/{action}/{id}", new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-            mapRouteManager.MapHttpRoute("AAModules/AuctionAPI", "defaultNoId", "{controller}/{action}", new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-
+            mapRouteManager.MapHttpRoute(
+                moduleFolderName: "AAModules/AuctionAPI", 
+                routeName: "default", 
+                url: "{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
         }
     }
 
