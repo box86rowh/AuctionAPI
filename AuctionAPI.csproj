@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Components\FeatureController.cs" />
     <Compile Include="Controllers\AuctionController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Data\DataProvider.cs" />
     <Compile Include="AuctionAPIModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
