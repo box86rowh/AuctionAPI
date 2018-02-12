@@ -66,6 +66,7 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
                 url: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional },
                 namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
+            //http://dnndev.me/API/AAModules/AuctionAPI/Auction
         }
     }
 
