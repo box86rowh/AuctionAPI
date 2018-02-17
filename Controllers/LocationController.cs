@@ -51,21 +51,15 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
                 }
             }
 
-
-            public class RouteMapper : IServiceRouteMapper
+            [AllowAnonymous]
+            [HttpDelete]
+            public bool Delete(Location l)
             {
-                public void RegisterRoutes(IMapRoute mapRouteManager)
+                using (var db = DBConnection.GetConnection())
                 {
-
-                    mapRouteManager.MapHttpRoute(
-                        moduleFolderName: "AAModules/AuctionAPI",
-                        routeName: "default",
-                        url: "{controller}/{id}",
-                        defaults: new { id = RouteParameter.Optional },
-                        namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-                    //http://dnndev.me/API/AAModules/AuctionAPI/Location
-
+                    return Location.Delete<Location>(db, l);
                 }
             }
+
         }
    }

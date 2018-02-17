@@ -53,7 +53,7 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IEnumerable<Item> GetByAuctionId(int id)
+        public IEnumerable<Item> GetByParentId(int id)
         {
             using (var db = DBConnection.GetConnection())
             {
@@ -61,29 +61,15 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
             }
         }
 
-
-        public class RouteMapper : IServiceRouteMapper
+        [AllowAnonymous]
+        [HttpDelete]
+        public bool Delete(Item i)
         {
-            public void RegisterRoutes(IMapRoute mapRouteManager)
+            using (var db = DBConnection.GetConnection())
             {
-
-                mapRouteManager.MapHttpRoute(
-                    moduleFolderName: "AAModules/AuctionAPI",
-                    routeName: "GetByAuctionId",
-                    url: "{controller}/{action}/{id}",
-                    defaults: new { id = RouteParameter.Optional },
-                    namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-                //http://dnndev.me/API/AAModules/AuctionAPI/Item/GetByAuctionId/1
-
-                mapRouteManager.MapHttpRoute(
-                    moduleFolderName: "AAModules/AuctionAPI",
-                    routeName: "default",
-                    url: "{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional },
-                    namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-                //http://dnndev.me/API/AAModules/AuctionAPI/Item
-
+                return Item.Delete<Item>(db, i);
             }
         }
+
     }
 }
