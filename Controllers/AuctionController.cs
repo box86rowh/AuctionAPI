@@ -32,8 +32,6 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
             }
         }
 
-
-
         [AllowAnonymous]
         [HttpPut]
         public bool Put([FromBody]Auction a)

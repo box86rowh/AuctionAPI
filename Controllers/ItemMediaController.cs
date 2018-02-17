@@ -9,55 +9,55 @@ using AuctionData.Connections;
 
 namespace AAModules.AuctionAPIAuctionAPI.Controllers
 {
-    public class ItemController : DnnApiController
+    public class ItemMediaController : DnnApiController
     {
         [AllowAnonymous]
         [HttpGet]
-        public IEnumerable<Item> Get()
+        public IEnumerable<ItemMedia> Get()
         {
-            using(var db = DBConnection.GetConnection())
+            using (var db = DBConnection.GetConnection())
             {
-                return Item.GetAll<Item>(db);
-            }  
+                return ItemMedia.GetAll<ItemMedia>(db);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
-        public Item Get(int id)
+        public ItemMedia Get(int id)
         {
-            using(var db = DBConnection.GetConnection())
+            using (var db = DBConnection.GetConnection())
             {
-                return Item.GetById<Item>(db, id);
+                return ItemMedia.GetById<ItemMedia>(db, id);
             }
         }
 
         [AllowAnonymous]
         [HttpPut]
-        public bool Put(Item i)
+        public bool Put(ItemMedia i)
         {
-            using(var db = DBConnection.GetConnection())
+            using (var db = DBConnection.GetConnection())
             {
-                return Item.Persist<Item>(db, i);
+                return ItemMedia.Persist<ItemMedia>(db, i);
             }
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public bool Post(Item i)
+        public bool Post(ItemMedia i)
         {
-            using(var db = DBConnection.GetConnection())
+            using (var db = DBConnection.GetConnection())
             {
-                return Item.Persist<Item>(db, i);
+                return ItemMedia.Persist<ItemMedia>(db, i);
             }
         }
 
         [AllowAnonymous]
         [HttpGet]
-        public IEnumerable<Item> GetByAuctionId(int id)
+        public IEnumerable<ItemMedia> GetByItemId(int id)
         {
             using (var db = DBConnection.GetConnection())
             {
-                return Item.GetByAuctionId(db, id);
+                return ItemMedia.GetByItemId(db, id);
             }
         }
 
@@ -69,11 +69,11 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
 
                 mapRouteManager.MapHttpRoute(
                     moduleFolderName: "AAModules/AuctionAPI",
-                    routeName: "GetByAuctionId",
+                    routeName: "GetByItemId",
                     url: "{controller}/{action}/{id}",
                     defaults: new { id = RouteParameter.Optional },
                     namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-                //http://dnndev.me/API/AAModules/AuctionAPI/Item/GetByAuctionId/1
+                //http://dnndev.me/API/AAModules/AuctionAPI/ItemMedia/GetByItemId/1
 
                 mapRouteManager.MapHttpRoute(
                     moduleFolderName: "AAModules/AuctionAPI",
@@ -81,7 +81,7 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
                     url: "{controller}/{id}",
                     defaults: new { id = RouteParameter.Optional },
                     namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-                //http://dnndev.me/API/AAModules/AuctionAPI/Item
+                //http://dnndev.me/API/AAModules/AuctionAPI/ItemMedia
 
             }
         }
