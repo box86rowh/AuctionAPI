@@ -7,7 +7,7 @@ using DotNetNuke.Web.Api;
 using AuctionData.Models;
 using AuctionData.Connections;
 
-namespace AAModules.AuctionAPIAuctionAPI.Controllers
+namespace AAModules.AuctionAPI.Controllers
 {
     public class ItemController : DnnApiController
     {

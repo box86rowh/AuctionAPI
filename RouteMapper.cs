@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using DotNetNuke.Web.Api;
 
-namespace AAModules.AuctionAPIAuctionAPI
+namespace AAModules.AuctionAPI
 {
     public class RouteMapper : IServiceRouteMapper
     {
@@ -12,8 +12,7 @@ namespace AAModules.AuctionAPIAuctionAPI
             moduleFolderName: "AAModules/AuctionAPI",
             routeName: "GetByParentId",
             url: "{controller}/{action}/{id}",
-            defaults: new { id = RouteParameter.Optional },
-            namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
+            namespaces: new[] { "AAModules.AuctionAPI.Controllers" });
             //http://dnndev.me/API/AAModules/AuctionAPI/ItemMedia/GetByParentId/1
 
             mapRouteManager.MapHttpRoute(
@@ -21,7 +20,7 @@ namespace AAModules.AuctionAPIAuctionAPI
                 routeName: "default",
                 url: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional },
-                namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
+                namespaces: new[] { "AAModules.AuctionAPI.Controllers" });
             //http://dnndev.me/API/AAModules/AuctionAPI/Auction
         }
     }
