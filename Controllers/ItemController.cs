@@ -7,7 +7,7 @@ using DotNetNuke.Web.Api;
 using AuctionData.Models;
 using AuctionData.Connections;
 
-namespace AAModules.AuctionAPIAuctionAPI.Controllers
+namespace AAModules.AuctionAPI.Controllers
 {
     public class ItemController : DnnApiController
     {
@@ -51,18 +51,25 @@ namespace AAModules.AuctionAPIAuctionAPI.Controllers
             }
         }
 
-        public class RouteMapper : IServiceRouteMapper
+        [AllowAnonymous]
+        [HttpGet]
+        public IEnumerable<Item> GetByParentId(int id)
         {
-            public void RegisterRoutes(IMapRoute mapRouteManager)
+            using (var db = DBConnection.GetConnection())
             {
-                mapRouteManager.MapHttpRoute(
-                    moduleFolderName: "AAModules/AuctionAPI",
-                    routeName: "default",
-                    url: "{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional },
-                    namespaces: new[] { "AAModules.AuctionAPIAuctionAPI.Controllers" });
-                //http://dnndev.me/API/AAModules/AuctionAPI/Item
+                return Item.GetByAuctionId(db, id);
             }
         }
+
+        [AllowAnonymous]
+        [HttpDelete]
+        public bool Delete(Item i)
+        {
+            using (var db = DBConnection.GetConnection())
+            {
+                return Item.Delete<Item>(db, i);
+            }
+        }
+
     }
 }

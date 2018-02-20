@@ -9,58 +9,68 @@ using AuctionData.Connections;
 
 namespace AAModules.AuctionAPI.Controllers
 {
-    public class AuctionController : DnnApiController
+    public class ItemMediaController : DnnApiController
     {
-
         [AllowAnonymous]
         [HttpGet]
-        public IEnumerable<Auction> Get()
+        public IEnumerable<ItemMedia> Get()
         {
             using (var db = DBConnection.GetConnection())
             {
-                return Auction.GetAll<Auction>(db);
+                return ItemMedia.GetAll<ItemMedia>(db);
             }
         }
 
         [AllowAnonymous]
         [HttpGet]
-        public Auction Get(int id)
+        public ItemMedia Get(int id)
         {
             using (var db = DBConnection.GetConnection())
             {
-                return Auction.GetById<Auction>(db, id);
+                return ItemMedia.GetById<ItemMedia>(db, id);
             }
         }
 
         [AllowAnonymous]
         [HttpPut]
-        public bool Put([FromBody]Auction a)
+        public bool Put(ItemMedia i)
         {
             using (var db = DBConnection.GetConnection())
             {
-                return Auction.Persist<Auction>(db, a);
+                return ItemMedia.Persist<ItemMedia>(db, i);
             }
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public bool Post([FromBody]Auction a)
+        public bool Post(ItemMedia i)
         {
             using (var db = DBConnection.GetConnection())
             {
-                return Auction.Persist<Auction>(db, a);
+                return ItemMedia.Persist<ItemMedia>(db, i);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IEnumerable<ItemMedia> GetByParentId(int id)
+        {
+            using (var db = DBConnection.GetConnection())
+            {
+                return ItemMedia.GetByItemId(db, id);
             }
         }
 
         [AllowAnonymous]
         [HttpDelete]
-        public bool Delete(Auction a)
+        public bool Delete(ItemMedia m)
         {
-            using (var db = DBConnection.GetConnection())
+            using(var db = DBConnection.GetConnection())
             {
-                return Auction.Delete<Auction>(db, a);
+                return ItemMedia.Delete<ItemMedia>(db, m);
             }
         }
 
     }
+
 }
